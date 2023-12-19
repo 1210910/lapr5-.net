@@ -1,4 +1,5 @@
-﻿using DDDSample1.Domain.Shared;
+﻿using System;
+using DDDSample1.Domain.Shared;
 
 namespace DDDSample1.Domain.Tasks
 {
@@ -16,9 +17,14 @@ namespace DDDSample1.Domain.Tasks
         
 
 
-        protected Task(string description, string user, string roomDest, string roomOrig)
+        protected Task(string id ,string description, string user, string roomDest, string roomOrig)
         {
-           
+            if (string.IsNullOrWhiteSpace(description) || string.IsNullOrWhiteSpace(user) || string.IsNullOrWhiteSpace(roomDest) || string.IsNullOrWhiteSpace(roomOrig))
+            {
+                throw new ArgumentException("The description of the task cannot be null or empty.");
+            }
+            
+            this.Id = new TaskId(Guid.Parse(id));
             this.Description = description;
             this.User = user;
             this.RoomOrig = roomOrig;

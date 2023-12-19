@@ -17,6 +17,10 @@ public class VigilanceTaskRequest: TaskRequest
         this.RequestNumber = new PhoneNumber(requestPhoneNumber);
     }
     
+    private VigilanceTaskRequest() : base("", "", "", "")
+    {
+        // Valores padrão ou nulos podem ser atribuídos aqui
+    }
     public void approve()
     {
         base.aproveRequest();

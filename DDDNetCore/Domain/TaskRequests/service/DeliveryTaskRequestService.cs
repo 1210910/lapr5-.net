@@ -68,6 +68,14 @@ public class DeliveryTaskRequestService
     {
         var cat = new DeliveryTaskRequest(dto.Description, dto.User, dto.RoomDest, dto.RoomOrig, dto.DestName, dto.OrigName, 
             dto.DestPhoneNumber, dto.OrigPhoneNumber, dto.Code);
+        
+        System.Console.WriteLine("DeliveryTaskRequestService");
+        System.Console.WriteLine(cat.Id);
+        // write a line to the console
+        if (cat.Id == null)
+        {
+            return null;
+        }
         await this._repo.AddAsync(cat);
         await this._unitOfWork.CommitAsync();
         return dto;

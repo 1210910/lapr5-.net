@@ -7,7 +7,14 @@ namespace DDDSample1.Infrastructure.TaskRequests.Repos;
 
 public class DeliveryTaskRequestRepository : BaseRepository<DeliveryTaskRequest, TaskRequestId>, IDeliveryTaskRequestRepository
 {
-    public DeliveryTaskRequestRepository(DbSet<DeliveryTaskRequest> objs) : base(objs)
+
+  
+
+    public DeliveryTaskRequestRepository(DDDSample1DbContext context) : base(context.DeliveryTaskRequests)
     {
+       
     }
+
+    
+
 }

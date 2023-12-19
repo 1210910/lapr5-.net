@@ -11,19 +11,34 @@ internal class DeliveryTaskEntityTypeConfiguration : IEntityTypeConfiguration<De
         builder.ToTable("DeliveryTasks");
 
         // Configuração da chave primária
-        builder.HasKey(dt => dt.Id);
+        builder.HasBaseType<Task>();
         builder.Property(dt => dt.Id).HasColumnName("Id").IsRequired();
 
         // Configurações específicas da DeliveryTask
-        builder.Property(dt => dt.DestPhoneNumber.ToString()).HasColumnName("DestPhoneNumber").IsRequired();
-        builder.Property(dt => dt.OrigPhoneNumber.ToString()).HasColumnName("OrigPhoneNumber").IsRequired();
-
-        // Configuração para mapear ConfirmationCode como uma string no banco de dados
-        builder.Property(dt => dt.ConfirmationCode.Value).HasColumnName("ConfirmationCode").IsRequired();
-
+        builder.OwnsOne(dt => dt.DestPhoneNumber, destPhone =>
+        {
+            destPhone.Property(dp => dp.Value).HasColumnName("DestPhoneNumber").IsRequired();
+        });
         
-        builder.Property(dt => dt.DestName.ToString()).HasColumnName("DestName").IsRequired();
-        builder.Property(dt => dt.OrigName.ToString()).HasColumnName("OrigName").IsRequired();
+        builder.OwnsOne(dt => dt.OrigPhoneNumber, origPhone =>
+        {
+            origPhone.Property(op => op.Value).HasColumnName("OrigPhoneNumber").IsRequired();
+        });
+        
+        builder.OwnsOne(dt => dt.ConfirmationCode, code =>
+        {
+            code.Property(c => c.Value).HasColumnName("ConfirmationCode").IsRequired();
+        });
+        
+        builder.OwnsOne(dt => dt.DestName, destName =>
+        {
+            destName.Property(dn => dn.Value).HasColumnName("DestName").IsRequired();
+        });
+        
+        builder.OwnsOne(dt => dt.OrigName, origName =>
+        {
+            origName.Property(on => on.Value).HasColumnName("OrigName").IsRequired();
+        });
 
         // Mapeamento das propriedades herdadas de Task
         builder.Property(dt => dt.Description).HasColumnName("Description").IsRequired();

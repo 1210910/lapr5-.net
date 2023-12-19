@@ -10,7 +10,7 @@ internal class TaskRequestEntityTypeConfiguration : IEntityTypeConfiguration<Tas
     {
         builder.Property(t => t.Id).HasColumnName("Id").IsRequired();
         
-        builder.Property(t => t.State.ToString()).HasColumnName("State").IsRequired();
+        builder.Property(t => t.State).HasColumnName("State").IsRequired();
         builder.Property(t => t.Description).HasColumnName("Description").IsRequired();
         builder.Property(t => t.User).HasColumnName("User").IsRequired();
         builder.Property(t => t.RoomOrig).HasColumnName("RoomOrig").IsRequired();

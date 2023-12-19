@@ -4,7 +4,7 @@ namespace DDDSample1.Domain.Shared.generalValueObjects
 {
     public class PhoneNumber
     {
-        private readonly string _phoneNumber;
+        private  string _phoneNumber;
 
         public PhoneNumber(string phoneNumber)
         {
@@ -30,7 +30,7 @@ namespace DDDSample1.Domain.Shared.generalValueObjects
             // You can use regular expressions or other validation methods
 
             // For simplicity, let's say a valid phone number has 10 digits
-            return !string.IsNullOrEmpty(phoneNumber) && phoneNumber.Length == 10 && IsNumeric(phoneNumber);
+            return !string.IsNullOrEmpty(phoneNumber) && phoneNumber.Length == 9 && IsNumeric(phoneNumber);
         }
 
         // Helper method to check if a string contains only numeric characters
@@ -45,5 +45,18 @@ namespace DDDSample1.Domain.Shared.generalValueObjects
             }
             return true;
         }
+        
+        private PhoneNumber()
+        {
+            // Private constructor to enforce creation via static method
+        }
+        
+        public string Value 
+        {
+            get => _phoneNumber;
+            
+            private set => _phoneNumber = value;
+        }
+        
     }
 }

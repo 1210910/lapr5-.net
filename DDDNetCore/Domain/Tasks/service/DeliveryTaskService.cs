@@ -47,7 +47,7 @@ namespace DDDSample1.Domain.Tasks
             var task = new DeliveryTask( dto.Description, dto.User, 
                 dto.RoomDest, dto.RoomOrig, dto.DestName, 
                 dto.OrigName, dto.DestPhoneNumber, dto.OrigPhoneNumber, 
-                dto.Code);
+                dto.Code, dto.Id);
 
             await this._repo.AddAsync(task);
 

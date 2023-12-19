@@ -8,7 +8,6 @@ namespace DDDNetCore.Domain.TaskRequests.persistence
     public interface IDeliveryTaskRequestRepository : IRepository<DeliveryTaskRequest, TaskRequestId>
     {
        
-
     }
 
     

@@ -47,7 +47,7 @@ public class VigilanceTasksController : ControllerBase
         {
             var task = await _service.AddAsync(dto);
 
-            return CreatedAtAction(nameof(GetGetById), new { id = task.Value.Id }, task);
+            return Ok(task.Value);
         }
 
         

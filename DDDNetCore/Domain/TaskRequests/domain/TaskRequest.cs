@@ -7,6 +7,7 @@ namespace DDDNetCore.Domain.TaskRequests.domain
 
     public abstract class TaskRequest : Entity<TaskRequestId>, IAggregateRoot
     {
+        
         public string Description { get; private set; }
 
         public string User { get; private set; }
@@ -24,12 +25,18 @@ namespace DDDNetCore.Domain.TaskRequests.domain
             {
                 throw new ArgumentException("The description of the task request cannot be null or empty.");
             }
+            this.Id = new TaskRequestId(Guid.NewGuid());
             this.Description = description;
             this.User = user;
             this.RoomOrig = roomOrig;
             this.RoomDest = roomDest;
             this.State = States.Pending.ToString();
 
+        }
+        
+        private TaskRequest() 
+        {
+            // Valores padrão ou nulos podem ser atribuídos aqui
         }
 
 

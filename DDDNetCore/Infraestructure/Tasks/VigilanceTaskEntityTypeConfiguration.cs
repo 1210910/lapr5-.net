@@ -12,18 +12,30 @@ namespace DDDSample1.Infrastructure.Tasks;
             builder.ToTable("VigilanceTasks");
 
             // Configuração da chave primária
-            builder.HasKey(vt => vt.Id);
+            builder.HasBaseType<Task>();
+            
             builder.Property(vt => vt.Id).HasColumnName("Id").IsRequired();
+            
+            builder.Property(dt => dt.Id).HasColumnName("Id").IsRequired();
+        
+            
+            builder.Property(t => t.Description).HasColumnName("Description").IsRequired();
+            builder.Property(t => t.User).HasColumnName("User").IsRequired();
+            builder.Property(t => t.RoomOrig).HasColumnName("RoomOrig").IsRequired();
+            builder.Property(t => t.RoomDest).HasColumnName("RoomDest").IsRequired();
 
             // Configuração das propriedades PhoneNumber e Name
-            builder.Property(vt => vt.RequestNumber.ToString()).HasColumnName("RequestNumber").IsRequired();
-            builder.Property(vt => vt.RequestName.ToString()).HasColumnName("RequestName").IsRequired();
+            builder.OwnsOne(vt => vt.RequestName, destPhone =>
+            {
+                destPhone.Property(dp => dp.Value).HasColumnName("RequestName").IsRequired();
+            });
+          
+            builder.OwnsOne(vt => vt.RequestNumber, destPhone =>
+            {
+                destPhone.Property(dp => dp.Value).HasColumnName("RequestNumber").IsRequired();
+            });
 
-            // Mapeamento das propriedades herdadas de Task
-            builder.Property(vt => vt.Description).HasColumnName("Description").IsRequired();
-            builder.Property(vt => vt.User).HasColumnName("User").IsRequired();
-            builder.Property(vt => vt.RoomDest).HasColumnName("RoomDest").IsRequired();
-            builder.Property(vt => vt.RoomOrig).HasColumnName("RoomOrig").IsRequired();
+          
             
 
         }

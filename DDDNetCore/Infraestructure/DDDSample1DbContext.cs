@@ -11,13 +11,14 @@ namespace DDDSample1.Infrastructure
     public class DDDSample1DbContext : DbContext
     {
         public DbSet<VigilanceTask> VigilanceTasks { get; set; }
+        
+        public DbSet<DeliveryTaskRequest> DeliveryTaskRequests { get; set; }
 
         public DbSet<DeliveryTask> DeliveryTasks { get; set; }
         public DbSet<Task> Tasks { get; set; }
         
         public DbSet<VigilanceTaskRequest> VigilanceTaskRequests { get; set; }
         
-        public DbSet<DeliveryTaskRequest> DeliveryTaskRequests { get; set; }
         
         public DbSet<TaskRequest> TaskRequests { get; set; }
         

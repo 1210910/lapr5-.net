@@ -13,8 +13,8 @@ namespace DDDNetCore.Controllers;
 
 public class DeliveryTasksController : ControllerBase
 {
-     private readonly DeliveryTaskService _service;
-
+    private readonly DeliveryTaskService _service;
+    
         public DeliveryTasksController(DeliveryTaskService service)
         {
             _service = service;
@@ -47,7 +47,7 @@ public class DeliveryTasksController : ControllerBase
         {
             var task = await _service.AddAsync(dto);
 
-            return CreatedAtAction(nameof(GetGetById), new { id = task.Value.Id }, task);
+            return Ok(task.Value);
         }
 
         

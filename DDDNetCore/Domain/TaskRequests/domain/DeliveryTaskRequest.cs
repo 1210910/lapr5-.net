@@ -5,6 +5,7 @@ namespace DDDNetCore.Domain.TaskRequests.domain
 
     public class DeliveryTaskRequest : TaskRequest
     {
+        
         public PhoneNumber DestPhoneNumber { get; private set; }
 
         public PhoneNumber OrigPhoneNumber { get; private set; }
@@ -25,6 +26,13 @@ namespace DDDNetCore.Domain.TaskRequests.domain
             this.OrigPhoneNumber = new PhoneNumber(origPhoneNumber);
             this.ConfirmationCode = Code.Create(code);
         }
+        
+        private DeliveryTaskRequest() : base("", "", "", "")
+        {
+            // Valores padrão ou nulos podem ser atribuídos aqui
+        }
+        
+        
 
 
         public new void aproveRequest()

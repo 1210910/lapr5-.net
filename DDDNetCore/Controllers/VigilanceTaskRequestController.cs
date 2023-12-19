@@ -49,7 +49,7 @@ public class VigilanceTasksRequestController : ControllerBase
         {
             var cat = await _service.AddAsync(dto);
 
-            return CreatedAtAction(nameof(GetGetById), new { id = cat.Value.Id }, cat);
+            return Ok(cat.Value);
         }
 
         

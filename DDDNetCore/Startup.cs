@@ -13,6 +13,7 @@ using DDDSample1.Infrastructure.Shared;
 using DDDSample1.Domain.Shared;
 using DDDSample1.Domain.Tasks;
 using DDDSample1.Infrastructure.TaskRequests.Repos;
+using DDDSample1.Infrastructure.Tasks.Repos;
 
 
 namespace DDDSample1
@@ -35,7 +36,6 @@ namespace DDDSample1
 
             ConfigureMyServices(services);
             
-
             services.AddControllers().AddNewtonsoftJson();
         }
 
@@ -67,15 +67,24 @@ namespace DDDSample1
         public void ConfigureMyServices(IServiceCollection services)
         {
             services.AddTransient<IUnitOfWork,UnitOfWork>();
+            
+            // add domain services here
+            
+            services.AddTransient<IDeliveryTaskRequestRepository, DeliveryTaskRequestRepository>();
+            services.AddTransient<DeliveryTaskRequestService>();
+ 
         
-            services.AddScoped<TaskRequest, DeliveryTaskRequest>();
-            services.AddScoped<TaskRequest, VigilanceTaskRequest>();
+            services.AddTransient<IVigilanceTaskRequestRepository, VigilanceTaskRequestRepository>();
+            services.AddTransient<VigilanceTaskRequestService>();
             
-            services.AddScoped<IDeliveryTaskRequestRepository,DeliveryTaskRequestRepository>();
-            services.AddScoped<DeliveryTaskRequestService>();
-            services.AddScoped<VigilanceTaskRequestService>();
+           
+            services.AddTransient<IVigilanceTaskRepository, VigilanceTaskRepository>();
+            services.AddTransient<VigilanceTaskService>();
             
-
+          
+            services.AddTransient<IDeliveryTaskRepository, DeliveryTaskRepository>();
+            services.AddTransient<DeliveryTaskService>();
+            
         }
     }
 }

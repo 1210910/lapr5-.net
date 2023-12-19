@@ -8,17 +8,24 @@ internal class VigilanceTaskRequestEntityTypeConfiguration : IEntityTypeConfigur
 {
     public void Configure(EntityTypeBuilder<VigilanceTaskRequest> builder)
     {
-        builder.ToTable("VigilanceTasks");
+        builder.ToTable("VigilanceTasksRequests");
 
         // Configuração da chave primária
-        builder.HasKey(vt => vt.Id);
+        builder.HasBaseType<TaskRequest>();
         builder.Property(vt => vt.Id).HasColumnName("Id").IsRequired();
         
-        builder.Property(vt => vt.State.ToString()).HasColumnName("State").IsRequired();
+        builder.Property(vt => vt.State).HasColumnName("State").IsRequired();
 
         // Configuração das propriedades PhoneNumber e Name
-        builder.Property(vt => vt.RequestNumber.ToString()).HasColumnName("RequestNumber").IsRequired();
-        builder.Property(vt => vt.RequestName.ToString()).HasColumnName("RequestName").IsRequired();
+        builder.OwnsOne(vt => vt.RequestName, destPhone =>
+        {
+            destPhone.Property(dp => dp.Value).HasColumnName("RequestName").IsRequired();
+        });
+        
+        builder.OwnsOne(vt => vt.RequestNumber, destPhone =>
+        {
+            destPhone.Property(dp => dp.Value).HasColumnName("RequestNumber").IsRequired();
+        });
 
         // Mapeamento das propriedades herdadas de Task
         builder.Property(vt => vt.Description).HasColumnName("Description").IsRequired();

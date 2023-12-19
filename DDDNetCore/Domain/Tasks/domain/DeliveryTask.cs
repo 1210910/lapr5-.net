@@ -17,14 +17,19 @@ namespace DDDSample1.Domain.Tasks
         
         
         public DeliveryTask(string description,string user ,string roomDest,string roomOrigin , 
-            string destName , string origName, string destPhoneNumber, string origPhoneNumber, string code )
-            : base (description,user,roomDest,roomOrigin)
+            string destName , string origName, string destPhoneNumber, string origPhoneNumber, string code, string id )
+            : base (id,description,user,roomDest,roomOrigin)
         {
             this.DestName =new Name(destName);
             this.OrigName=new Name(origName);
             this.DestPhoneNumber= new PhoneNumber(destPhoneNumber);
             this.OrigPhoneNumber= new PhoneNumber(origPhoneNumber);
             this.ConfirmationCode= Code.Create(code);
+        }
+        
+        private DeliveryTask() : base("","", "", "", "")
+        {
+            // Valores padrão ou nulos podem ser atribuídos aqui
         }
 
         public void ChangeDescription(string dtoDescription)

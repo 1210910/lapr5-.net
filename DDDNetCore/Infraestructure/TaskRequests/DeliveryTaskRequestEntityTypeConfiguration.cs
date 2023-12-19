@@ -8,30 +8,47 @@ internal class DeliveryTaskRequestEntityTypeConfiguration : IEntityTypeConfigura
 {
     public void Configure(EntityTypeBuilder<DeliveryTaskRequest> builder)
     {
-        builder.ToTable("DeliveryTasks");
+        builder.ToTable("DeliveryTasksRequests");
 
         // Configuração da chave primária
-        builder.HasKey(dt => dt.Id);
+        builder.HasBaseType<TaskRequest>();
+
         builder.Property(dt => dt.Id).HasColumnName("Id").IsRequired();
+        
+        
 
+        builder.Property(t => t.State).HasColumnName("State").IsRequired();
+        builder.Property(t => t.Description).HasColumnName("Description").IsRequired();
+        builder.Property(t => t.User).HasColumnName("User").IsRequired();
+        builder.Property(t => t.RoomOrig).HasColumnName("RoomOrig").IsRequired();
+        builder.Property(t => t.RoomDest).HasColumnName("RoomDest").IsRequired();
         // Configurações específicas da DeliveryTask
-        builder.Property(dt => dt.DestPhoneNumber.ToString()).HasColumnName("DestPhoneNumber").IsRequired();
-        builder.Property(dt => dt.OrigPhoneNumber.ToString()).HasColumnName("OrigPhoneNumber").IsRequired();
+        builder.OwnsOne(dt => dt.DestPhoneNumber, destPhone =>
+        {
+            destPhone.Property(dp => dp.Value).HasColumnName("DestPhoneNumber").IsRequired();
+        });
 
-        // Configuração para mapear ConfirmationCode como uma string no banco de dados
-        builder.Property(dt => dt.ConfirmationCode.Value).HasColumnName("ConfirmationCode").IsRequired();
+        builder.OwnsOne(dt => dt.OrigPhoneNumber, origPhone =>
+        {
+            origPhone.Property(op => op.Value).HasColumnName("OrigPhoneNumber").IsRequired();
+        });
+
+        builder.OwnsOne(dt => dt.ConfirmationCode, code =>
+        {
+            code.Property(c => c.Value).HasColumnName("ConfirmationCode").IsRequired();
+        });
+
+        builder.OwnsOne(dt => dt.DestName, destName =>
+        {
+            destName.Property(dn => dn.Value).HasColumnName("DestName").IsRequired();
+        });
+
+        builder.OwnsOne(dt => dt.OrigName, origName =>
+        {
+            origName.Property(on => on.Value).HasColumnName("OrigName").IsRequired();
+        });
+    
         
-        builder.Property(dt => dt.State.ToString()).HasColumnName("State").IsRequired();
-
-        
-        builder.Property(dt => dt.DestName.ToString()).HasColumnName("DestName").IsRequired();
-        builder.Property(dt => dt.OrigName.ToString()).HasColumnName("OrigName").IsRequired();
-
-        // Mapeamento das propriedades herdadas de Task
-        builder.Property(dt => dt.Description).HasColumnName("Description").IsRequired();
-        builder.Property(dt => dt.User).HasColumnName("User").IsRequired();
-        builder.Property(dt => dt.RoomDest).HasColumnName("RoomDest").IsRequired();
-        builder.Property(dt => dt.RoomOrig).HasColumnName("RoomOrig").IsRequired();
         
 
     }

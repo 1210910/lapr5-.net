@@ -41,7 +41,7 @@ public class VigilanceTaskService
     {
         var task = new VigilanceTask( dto.Description, dto.User, 
             dto.RoomDest, dto.RoomOrig, dto.RequestName, 
-            dto.RequestNumber);
+            dto.RequestNumber,dto.Id);
 
         await this._repo.AddAsync(task);
 
