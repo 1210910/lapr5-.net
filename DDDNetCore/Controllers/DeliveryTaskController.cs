@@ -5,6 +5,7 @@ using System;
 using System.Threading.Tasks;
 using DDDSample1.Domain.Shared;
 using DDDSample1.Domain.Tasks;
+using Task = System.Threading.Tasks.Task;
 
 namespace DDDNetCore.Controllers;
 
@@ -41,15 +42,50 @@ public class DeliveryTasksController : ControllerBase
             return cat;
         }
 
-        // POST: api/Tasks
-        [HttpPost]
-        public async Task<ActionResult<DeliveryTaskDto>> Create(DeliveryTaskDto dto)
+        [HttpGet("pending")]
+        public async Task<ActionResult<List<DeliveryTaskDto>>> GetPending()
         {
-            var task = await _service.AddAsync(dto);
-
-            return Ok(task.Value);
+            return await _service.GetAllPendingAsync();
         }
 
+        // POST: api/Tasks
+        [HttpPost("start")]
+        public async Task<ActionResult<DeliveryTaskDto>> Start(ApproveDto dto)
+        {
+            try
+            {
+                var task = await _service.StartAsync(dto);
+
+                return Ok(task.Value);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(new {Message = ex.Message});
+            }
+        }
+
+        [HttpPost("finish")]
+        public async Task<ActionResult<DeliveryTaskDto>> Finish(ApproveDto dto)
+        {
+            try
+            {
+            var task = await _service.CompleteAsync(dto);
+
+            return Ok(task.Value);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(new {Message = ex.Message});
+            }
+        }
+        
+        [HttpGet("robot")]
+        public async Task<ActionResult<List<DeliveryTaskDto>>> GetByRobotId(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+        
+       
         
         // PUT: api/Tasks/5
         [HttpPut("{id}")]

@@ -24,6 +24,8 @@ namespace DDDSample1.Infrastructure.Shared
             return await this._objs.ToListAsync();
         }
         
+        
+        
         public async Task<TEntity> GetByIdAsync(TEntityId id)
         {
             //return await this._context.Categories.FindAsync(id);
@@ -44,6 +46,12 @@ namespace DDDSample1.Infrastructure.Shared
         public void Remove(TEntity obj)
         {
             this._objs.Remove(obj);
+        }
+        public async Task<TEntity> UpdateAsync(TEntity obj)
+        {
+            
+            var ret = await Task.FromResult(this._objs.Update(obj));
+            return ret.Entity;
         }
     }
 }

@@ -15,6 +15,7 @@ internal class TaskRequestEntityTypeConfiguration : IEntityTypeConfiguration<Tas
         builder.Property(t => t.User).HasColumnName("User").IsRequired();
         builder.Property(t => t.RoomOrig).HasColumnName("RoomOrig").IsRequired();
         builder.Property(t => t.RoomDest).HasColumnName("RoomDest").IsRequired();
+        
        
     }
 }

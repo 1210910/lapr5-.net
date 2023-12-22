@@ -27,7 +27,7 @@ namespace DDDNetCore.Domain.TaskRequests.domain
             this.ConfirmationCode = Code.Create(code);
         }
         
-        private DeliveryTaskRequest() : base("", "", "", "")
+        private DeliveryTaskRequest() : base()
         {
             // Valores padrão ou nulos podem ser atribuídos aqui
         }

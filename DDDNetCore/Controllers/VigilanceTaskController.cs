@@ -26,6 +26,46 @@ public class VigilanceTasksController : ControllerBase
         {
             return await _service.GetAllAsync();
         }
+        
+        
+        [HttpGet("pending")]
+        public async Task<ActionResult<List<VigilanceTaskDto>>> GetAllPending()
+        {
+            return await _service.GetAllPendingAsync();
+        }
+        
+        
+        
+        
+        [HttpPost("start")]
+        public async Task<ActionResult<VigilanceTaskDto>> Start(ApproveDto dto)
+        {
+            try
+            {
+                var task = await _service.StartAsync(dto);
+
+                return Ok(task.Value);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(new {Message = ex.Message});
+            }
+        }
+
+        [HttpPost("finish")]
+        public async Task<ActionResult<VigilanceTaskDto>> Finish(ApproveDto dto)
+        {
+            try
+            {
+                var task = await _service.CompleteAsync(dto);
+
+                return Ok(task.Value);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(new {Message = ex.Message});
+            }
+        }
 
         // GET: api/Tasks/5
         [HttpGet("{id}")]
@@ -41,14 +81,7 @@ public class VigilanceTasksController : ControllerBase
             return cat;
         }
 
-        // POST: api/Tasks
-        [HttpPost]
-        public async Task<ActionResult<VigilanceTaskDto>> Create(VigilanceTaskDto dto)
-        {
-            var task = await _service.AddAsync(dto);
-
-            return Ok(task.Value);
-        }
+        
 
         
         // PUT: api/Tasks/5
@@ -59,6 +92,7 @@ public class VigilanceTasksController : ControllerBase
             {
                 return BadRequest();
             }
+            
 
             try
             {

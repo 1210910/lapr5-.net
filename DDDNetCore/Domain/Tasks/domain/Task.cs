@@ -13,11 +13,13 @@ namespace DDDSample1.Domain.Tasks
         public string RoomDest { get; private set; }
         
         public string RoomOrig { get; private set; }
+
+        public string RobotId { get; private set; }
         
-        
+        public string Status { get; private set; }
 
 
-        protected Task(string id ,string description, string user, string roomDest, string roomOrig)
+        protected Task(string id ,string description, string user, string roomDest, string roomOrig, string robotId)
         {
             if (string.IsNullOrWhiteSpace(description) || string.IsNullOrWhiteSpace(user) || string.IsNullOrWhiteSpace(roomDest) || string.IsNullOrWhiteSpace(roomOrig))
             {
@@ -29,13 +31,30 @@ namespace DDDSample1.Domain.Tasks
             this.User = user;
             this.RoomOrig = roomOrig;
             this.RoomDest = roomDest;
-            
+            this.Status = States.Pending.ToString();
+            this.RobotId = robotId;
+
+        }
+        
+        protected Task() 
+        {
+            // Valores padrão ou nulos podem ser atribuídos aqui
         }
 
 
         protected void changeDescription(string dtoDescription)
         {
             this.Description = dtoDescription;
+        }
+        
+        protected void startTask()
+        {
+            this.Status = States.InProgress.ToString();
+        }
+        
+        protected void finishTask()
+        {
+            this.Status = States.Completed.ToString();
         }
     }
 }

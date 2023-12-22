@@ -8,8 +8,8 @@
         // Additional properties if needed
     
         public VigilanceTaskDto(string id,string description, string user, string roomDest, string roomOrig,
-            string requestName, string requestPhoneNumber)
-            : base(id,description, user, roomDest, roomOrig)
+            string requestName, string requestPhoneNumber, string robotId, string status)
+            : base(id,description, user, roomDest, roomOrig,robotId,status)
         {
             RequestName = requestName;
             RequestNumber = requestPhoneNumber;

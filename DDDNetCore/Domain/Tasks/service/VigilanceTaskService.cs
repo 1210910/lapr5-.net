@@ -16,12 +16,42 @@ public class VigilanceTaskService
         this._unitOfWork = unitOfWork;
         this._repo = repo;
     }
+    
+    public async Task<ActionResult<VigilanceTaskDto>> StartAsync(ApproveDto taskId)
+    {
+        var task = await this._repo.GetByIdAsync(new TaskId(taskId.Id)); 
+
+        if (task == null)
+            return null;   
+
+        task.StartTask();
+            
+        await this._unitOfWork.CommitAsync();
+
+        return new ActionResult<VigilanceTaskDto>(new VigilanceTaskDto(task.Id.AsGuid().ToString(),  
+            task.Description,  task.User,  task.RoomDest,  task.RoomOrig,  task.RequestName.ToString(), task.RequestNumber.ToString(),task.RobotId.ToString(),task.Status.ToString()));
+    }
+        
+    public async Task<ActionResult<VigilanceTaskDto>> CompleteAsync (ApproveDto dto)
+    {
+        var task = await this._repo.GetByIdAsync(new TaskId(dto.Id)); 
+
+        if (task == null)
+            return null;   
+
+        task.FinishTask();
+            
+        await this._unitOfWork.CommitAsync();
+
+        return new ActionResult<VigilanceTaskDto>(new VigilanceTaskDto(task.Id.AsGuid().ToString(),  
+            task.Description,  task.User,  task.RoomDest,  task.RoomOrig,  task.RequestName.ToString(), task.RequestNumber.ToString(),task.RobotId.ToString(),task.Status.ToString()));
+    }
     public async Task<ActionResult<IEnumerable<VigilanceTaskDto>>> GetAllAsync()
     {
         var list = await this._repo.GetAllAsync();
             
         List<VigilanceTaskDto> listDto = list.ConvertAll<VigilanceTaskDto>(cat => new VigilanceTaskDto( cat.Id.AsGuid().ToString(),  
-            cat.Description,  cat.User,  cat.RoomDest,  cat.RoomOrig,  cat.RequestName.ToString(), cat.RequestNumber.ToString()));
+            cat.Description,  cat.User,  cat.RoomDest,  cat.RoomOrig,  cat.RequestName.ToString(), cat.RequestNumber.ToString(),cat.RobotId.ToString(),cat.Status.ToString()));
 
         return listDto;
     }
@@ -34,21 +64,19 @@ public class VigilanceTaskService
             return null;
 
         return new ActionResult<VigilanceTaskDto>(new VigilanceTaskDto(cat.Id.AsGuid().ToString(),  
-            cat.Description,  cat.User,  cat.RoomDest,  cat.RoomOrig,  cat.RequestName.ToString(), cat.RequestNumber.ToString()));
+            cat.Description,  cat.User,  cat.RoomDest,  cat.RoomOrig,  cat.RequestName.ToString(), cat.RequestNumber.ToString(),cat.RobotId.ToString(),cat.Status.ToString()));
     }
 
-    public async Task<ActionResult<VigilanceTaskDto>> AddAsync(VigilanceTaskDto dto)
+    public async Task<ActionResult<VigilanceTaskDto>> AddAsync(VigilanceTask dto)
     {
-        var task = new VigilanceTask( dto.Description, dto.User, 
-            dto.RoomDest, dto.RoomOrig, dto.RequestName, 
-            dto.RequestNumber,dto.Id);
+        
 
-        await this._repo.AddAsync(task);
+        await this._repo.AddAsync(dto);
 
         await this._unitOfWork.CommitAsync();
 
-        return new ActionResult<VigilanceTaskDto>(new VigilanceTaskDto(task.Id.AsGuid().ToString(),  
-            task.Description,  task.User,  task.RoomDest,  task.RoomOrig,  task.RequestName.ToString(), task.RequestNumber.ToString()));
+        return new ActionResult<VigilanceTaskDto>(new VigilanceTaskDto(dto.Id.AsGuid().ToString(),  
+            dto.Description,  dto.User,  dto.RoomDest,  dto.RoomOrig,  dto.RequestName.ToString(), dto.RequestNumber.ToString(),dto.RobotId.ToString(),dto.Status.ToString()));
     }
 
     public async Task<ActionResult<VigilanceTaskDto>> UpdateAsync(VigilanceTaskDto dto)
@@ -64,7 +92,7 @@ public class VigilanceTaskService
         await this._unitOfWork.CommitAsync();
 
         return new ActionResult<VigilanceTaskDto>(new VigilanceTaskDto(task.Id.AsGuid().ToString(),  
-            task.Description,  task.User,  task.RoomDest,  task.RoomOrig,  task.RequestName.ToString(), task.RequestNumber.ToString()));
+            task.Description,  task.User,  task.RoomDest,  task.RoomOrig,  task.RequestName.ToString(), task.RequestNumber.ToString(),task.RobotId.ToString(),task.Status.ToString()));
     }
     
 
@@ -80,6 +108,18 @@ public class VigilanceTaskService
         await this._unitOfWork.CommitAsync();
 
         return new ActionResult<VigilanceTaskDto>(new VigilanceTaskDto(task.Id.AsGuid().ToString(),  
-            task.Description,  task.User,  task.RoomDest,  task.RoomOrig,  task.RequestName.ToString(), task.RequestNumber.ToString()));
+            task.Description,  task.User,  task.RoomDest,  task.RoomOrig,  task.RequestName.ToString(), task.RequestNumber.ToString(),task.RobotId.ToString(),task.Status.ToString()));
+    }
+
+    public async Task<ActionResult<List<VigilanceTaskDto>>> GetAllPendingAsync()
+    {
+        var list = await this._repo.GetAllAsync();
+        
+        list.RemoveAll(x => x.Status != States.Pending.ToString());
+            
+        List<VigilanceTaskDto> listDto = list.ConvertAll<VigilanceTaskDto>(cat => new VigilanceTaskDto( cat.Id.AsGuid().ToString(),  
+            cat.Description,  cat.User,  cat.RoomDest,  cat.RoomOrig,  cat.RequestName.ToString(), cat.RequestNumber.ToString(),cat.RobotId.ToString(),cat.Status.ToString()));
+
+        return listDto;
     }
 }

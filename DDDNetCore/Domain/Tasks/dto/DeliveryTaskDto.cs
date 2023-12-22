@@ -7,12 +7,13 @@
         public string DestPhoneNumber { get; set; }
         public string OrigPhoneNumber { get; set; }
         public string Code { get; set; }
-    
+        
+        
         
     
         public DeliveryTaskDto(string id ,string description, string user, string roomDest, string roomOrig, 
-            string destName, string origName, string destPhoneNumber, string origPhoneNumber, string code)
-            : base(id ,description, user, roomDest, roomOrig)
+            string destName, string origName, string destPhoneNumber, string origPhoneNumber, string code, string robotId, string status)
+            : base(id ,description, user, roomDest, roomOrig, robotId, status)
         {
             DestName = destName;
             OrigName = origName;

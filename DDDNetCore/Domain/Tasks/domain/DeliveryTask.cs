@@ -17,8 +17,8 @@ namespace DDDSample1.Domain.Tasks
         
         
         public DeliveryTask(string description,string user ,string roomDest,string roomOrigin , 
-            string destName , string origName, string destPhoneNumber, string origPhoneNumber, string code, string id )
-            : base (id,description,user,roomDest,roomOrigin)
+            string destName , string origName, string destPhoneNumber, string origPhoneNumber, string code, string id , string robotId )
+            : base (id,description,user,roomDest,roomOrigin,robotId)
         {
             this.DestName =new Name(destName);
             this.OrigName=new Name(origName);
@@ -27,7 +27,7 @@ namespace DDDSample1.Domain.Tasks
             this.ConfirmationCode= Code.Create(code);
         }
         
-        private DeliveryTask() : base("","", "", "", "")
+        private DeliveryTask() : base()
         {
             // Valores padrão ou nulos podem ser atribuídos aqui
         }
@@ -35,6 +35,16 @@ namespace DDDSample1.Domain.Tasks
         public void ChangeDescription(string dtoDescription)
         {
             base.changeDescription(dtoDescription);
+        }
+        
+        public void StartTask()
+        {
+            base.startTask();
+        }
+        
+        public void FinishTask()
+        {
+            base.finishTask();
         }
     }
 }

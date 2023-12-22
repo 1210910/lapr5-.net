@@ -45,6 +45,8 @@ internal class DeliveryTaskEntityTypeConfiguration : IEntityTypeConfiguration<De
         builder.Property(dt => dt.User).HasColumnName("User").IsRequired();
         builder.Property(dt => dt.RoomDest).HasColumnName("RoomDest").IsRequired();
         builder.Property(dt => dt.RoomOrig).HasColumnName("RoomOrig").IsRequired();
+        builder.Property(dt => dt.Status).HasColumnName("Status").IsRequired();
+        builder.Property(dt => dt.RobotId).HasColumnName("RobotId").IsRequired();
         
 
     }

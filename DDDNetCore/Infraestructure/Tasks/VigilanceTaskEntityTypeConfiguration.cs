@@ -23,6 +23,8 @@ namespace DDDSample1.Infrastructure.Tasks;
             builder.Property(t => t.User).HasColumnName("User").IsRequired();
             builder.Property(t => t.RoomOrig).HasColumnName("RoomOrig").IsRequired();
             builder.Property(t => t.RoomDest).HasColumnName("RoomDest").IsRequired();
+            builder.Property(t => t.Status).HasColumnName("Status").IsRequired();
+            builder.Property(t => t.RobotId).HasColumnName("RobotId").IsRequired();
 
             // Configuração das propriedades PhoneNumber e Name
             builder.OwnsOne(vt => vt.RequestName, destPhone =>

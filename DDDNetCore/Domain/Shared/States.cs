@@ -4,5 +4,7 @@ public enum States
 {
     Pending,
     Accepted,
-    Rejected
+    Rejected,
+    InProgress,
+    Completed
 }

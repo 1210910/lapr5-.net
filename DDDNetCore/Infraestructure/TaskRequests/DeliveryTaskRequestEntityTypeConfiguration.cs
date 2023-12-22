@@ -22,6 +22,7 @@ internal class DeliveryTaskRequestEntityTypeConfiguration : IEntityTypeConfigura
         builder.Property(t => t.User).HasColumnName("User").IsRequired();
         builder.Property(t => t.RoomOrig).HasColumnName("RoomOrig").IsRequired();
         builder.Property(t => t.RoomDest).HasColumnName("RoomDest").IsRequired();
+       
         // Configurações específicas da DeliveryTask
         builder.OwnsOne(dt => dt.DestPhoneNumber, destPhone =>
         {
@@ -47,6 +48,7 @@ internal class DeliveryTaskRequestEntityTypeConfiguration : IEntityTypeConfigura
         {
             origName.Property(on => on.Value).HasColumnName("OrigName").IsRequired();
         });
+        
     
         
         

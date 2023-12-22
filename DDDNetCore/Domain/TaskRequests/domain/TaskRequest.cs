@@ -19,6 +19,10 @@ namespace DDDNetCore.Domain.TaskRequests.domain
         public string State { get; private set; }
 
 
+        protected TaskRequest() 
+        {
+            // Valores padrão ou nulos podem ser atribuídos aqui
+        }
         protected TaskRequest(string description, string user, string roomDest, string roomOrig)
         {
             if (string.IsNullOrWhiteSpace(description) || string.IsNullOrWhiteSpace(user) || string.IsNullOrWhiteSpace(roomDest) || string.IsNullOrWhiteSpace(roomOrig))
@@ -34,10 +38,7 @@ namespace DDDNetCore.Domain.TaskRequests.domain
 
         }
         
-        private TaskRequest() 
-        {
-            // Valores padrão ou nulos podem ser atribuídos aqui
-        }
+       
 
 
         protected void aproveRequest()

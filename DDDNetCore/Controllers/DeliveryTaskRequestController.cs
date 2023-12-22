@@ -29,6 +29,12 @@ public class DeliveryTasksRequestController : ControllerBase
         {
             return await _service.GetAllAsync();
         }
+        
+        [HttpGet("pending")]
+        public async Task<ActionResult<List<DeliveryTaskRequestDto>>> GetPending()
+        {
+            return await _service.GetAllPendingAsync();
+        }
 
         // GET: api/TasksRequest/5
         [HttpGet("{id}")]
@@ -49,6 +55,33 @@ public class DeliveryTasksRequestController : ControllerBase
         public async Task<ActionResult<DeliveryTaskRequestDto>> Create(DeliveryTaskRequestDto dto)
         {
             var cat = await _service.AddAsync(dto);
+
+            return Ok(cat.Value);
+        }
+        
+        [HttpPost("approve")]
+        public async Task<ActionResult<DeliveryTaskRequestDto>> Approve(ApproveDto dto )
+        {
+            try
+            {
+                var cat = await _service.ApproveAsync(dto);
+                if (cat == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(cat.Value);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(new {Message = ex});
+            }
+        }
+        
+        [HttpPost("reject")]
+        public async Task<ActionResult<DeliveryTaskRequestDto>> Reject(ApproveDto dto)
+        {
+            var cat = await _service.RejectAsync(dto);
 
             return Ok(cat.Value);
         }
@@ -78,7 +111,12 @@ public class DeliveryTasksRequestController : ControllerBase
                 return BadRequest(new {Message = ex.Message});
             }
         }
-
+        
+        [HttpGet("state")]
+        public async Task<ActionResult<DeliveryTaskRequestDto>> GetByState([FromQuery] string state)
+        {
+            throw new NotImplementedException();
+        }
         
         
         // DELETE: api/TasksRequest/5

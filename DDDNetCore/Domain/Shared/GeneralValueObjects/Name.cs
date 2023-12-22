@@ -4,10 +4,9 @@ namespace DDDSample1.Domain.Shared.generalValueObjects
 {
     public class Name
     {
-        public string FirstName { get; }
-        public string LastName { get; }
-        
-        public string FullName { get; set; }
+
+
+        public string _fullName;
 
         public Name(string fullName)
         {
@@ -23,9 +22,8 @@ namespace DDDSample1.Domain.Shared.generalValueObjects
                 throw new ArgumentException("Please provide both first name and last name.");
             }
 
-            FirstName = nameParts[0];
-            LastName = nameParts[nameParts.Length - 1];
-            FullName = fullName;
+            
+            _fullName = fullName;
         }
         
         private Name()
@@ -35,14 +33,14 @@ namespace DDDSample1.Domain.Shared.generalValueObjects
 
         public override string ToString()
         {
-            return $"{FirstName} {LastName}";
+            return _fullName;
         }
         
         public string Value 
         {
-            get => FullName;
+            get => _fullName;
             
-            private set => FullName = ToString();
+            private set => _fullName = value;
         }
     }
 }

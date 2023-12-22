@@ -128,13 +128,6 @@ C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement
 C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\bin\Debug\netcoreapp8.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\bin\Debug\netcoreapp8.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\bin\Debug\netcoreapp8.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
-C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\obj\Debug\netcoreapp8.0\DDDNetCore.csproj.AssemblyReference.cache
-C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\obj\Debug\netcoreapp8.0\DDDNetCore.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\obj\Debug\netcoreapp8.0\DDDNetCore.AssemblyInfoInputs.cache
-C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\obj\Debug\netcoreapp8.0\DDDNetCore.AssemblyInfo.cs
-C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\obj\Debug\netcoreapp8.0\DDDNetCore.csproj.CoreCompileInputs.cache
-C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\obj\Debug\netcoreapp8.0\DDDNetCore.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\obj\Debug\netcoreapp8.0\DDDNetCore.sourcelink.json
 C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\bin\Debug\netcoreapp8.0\appsettings.Development.json
 C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\bin\Debug\netcoreapp8.0\appsettings.json
 C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\bin\Debug\netcoreapp8.0\DDDNetCore.exe
@@ -183,6 +176,13 @@ C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement
 C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\bin\Debug\netcoreapp8.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\bin\Debug\netcoreapp8.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\bin\Debug\netcoreapp8.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\obj\Debug\netcoreapp8.0\DDDNetCore.csproj.AssemblyReference.cache
+C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\obj\Debug\netcoreapp8.0\DDDNetCore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\obj\Debug\netcoreapp8.0\DDDNetCore.AssemblyInfoInputs.cache
+C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\obj\Debug\netcoreapp8.0\DDDNetCore.AssemblyInfo.cs
+C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\obj\Debug\netcoreapp8.0\DDDNetCore.csproj.CoreCompileInputs.cache
+C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\obj\Debug\netcoreapp8.0\DDDNetCore.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\obj\Debug\netcoreapp8.0\DDDNetCore.sourcelink.json
 C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\obj\Debug\netcoreapp8.0\DDDNetCore.csproj.CopyComplete
 C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\obj\Debug\netcoreapp8.0\DDDNetCore.dll
 C:\Users\narut\OneDrive\Ambiente de Trabalho\UNI_3_ano\sem5pi_g09_taskmanagement\DDDNetCore\obj\Debug\netcoreapp8.0\refint\DDDNetCore.dll

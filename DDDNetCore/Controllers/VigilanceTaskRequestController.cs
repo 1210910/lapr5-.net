@@ -28,6 +28,14 @@ public class VigilanceTasksRequestController : ControllerBase
         {
             return await _service.GetAllAsync();
         }
+        
+        
+        [HttpGet("pending")]
+        public async Task<ActionResult<List<VigilanceTaskRequestDto>>> GetAllPending()
+        {
+            return await _service.GetAllPendingAsync();
+        }
+        
 
         // GET: api/TasksRequest/5
         [HttpGet("{id}")]
@@ -51,6 +59,40 @@ public class VigilanceTasksRequestController : ControllerBase
 
             return Ok(cat.Value);
         }
+        
+        [HttpPost("approve")]
+        public async Task<ActionResult<VigilanceTaskRequestDto>> Approve(ApproveDto dto)
+        {
+            try
+            {
+                var task = await _service.ApproveAsync(dto);
+
+                return Ok(task.Value);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(new {Message = e.Message});
+            }
+            
+        }
+        
+        [HttpPost("reject")]
+        public async Task<ActionResult<VigilanceTaskRequestDto>> Reject(ApproveDto dto)
+        {
+            try
+            {
+            var task = await _service.RejectAsync(dto);
+
+            return Ok(task.Value);
+            }
+            catch (Exception e)
+            {
+
+            return BadRequest(new {Message = e.Message});
+            }
+        }
+        
 
         
         // PUT: api/TasksRequest/5

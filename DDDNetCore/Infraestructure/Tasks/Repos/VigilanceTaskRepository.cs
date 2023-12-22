@@ -8,7 +8,7 @@ namespace DDDSample1.Infrastructure.Tasks.Repos;
 
 public class VigilanceTaskRepository : BaseRepository<VigilanceTask,TaskId> , IVigilanceTaskRepository
 {
-    public VigilanceTaskRepository(DbSet<VigilanceTask> objs) : base(objs)
+    public VigilanceTaskRepository(DDDSample1DbContext context) : base(context.VigilanceTasks)
     {
     }
 }
