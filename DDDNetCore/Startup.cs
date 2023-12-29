@@ -68,7 +68,7 @@ namespace DDDSample1
         public void ConfigureMyServices(IServiceCollection services)
         {
             services.AddTransient<IUnitOfWork,UnitOfWork>();
-            services.AddAutoMapper(typeof(MappingProfile));
+           
             // add domain services here
             
             services.AddTransient<IDeliveryTaskRequestRepository, DeliveryTaskRequestRepository>();

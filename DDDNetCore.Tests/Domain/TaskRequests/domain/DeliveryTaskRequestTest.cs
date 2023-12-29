@@ -16,8 +16,8 @@ public class DeliveryTaskRequestTest
     private static readonly string ValidRoomOrig = "Origin room";
     private static readonly string ValidDestName = "Destination Name";
     private static readonly string ValidOrigName = "Origin Name";
-    private static readonly string ValidDestPhoneNumber = "1234567890"; // Valid phone number
-    private static readonly string ValidOrigPhoneNumber = "9876543210"; // Valid phone number
+    private static readonly string ValidDestPhoneNumber = "123456789"; // Valid phone number
+    private static readonly string ValidOrigPhoneNumber = "987654321"; // Valid phone number
     private static readonly string ValidCode = "12345";
     
     [TestMethod]
@@ -141,7 +141,7 @@ public class DeliveryTaskRequestTest
     public void Constructor_WithInvalidCode_ShouldThrowException()
     {
         // Arrange
-        var invalidCode = "";
+        var invalidCode = "111111111";
         
         // Act
         var deliveryTaskRequest = new DeliveryTaskRequest(ValidDescription, ValidUser, ValidRoomDest, ValidRoomOrig,
