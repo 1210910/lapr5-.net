@@ -8,7 +8,7 @@ public class DeliveryTaskRequestDto: TaskRequestDto
     public string OrigPhoneNumber { get; set; }
     public string Code { get; set; }
     
-        
+    protected DeliveryTaskRequestDto() { }
     
     public DeliveryTaskRequestDto(string id ,string description, string user, string roomDest, string roomOrig, 
         string destName, string origName, string destPhoneNumber, string origPhoneNumber,string state, string code)

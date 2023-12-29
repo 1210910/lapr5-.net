@@ -11,8 +11,10 @@ public class TaskRequestDto
     public string RoomOrig { get; set; }
     public string State { get; set; }
     
-    // Additional properties if needed
+   // public string Date { get; set; }
     
+    // Additional properties if needed
+    protected TaskRequestDto() { }
     protected TaskRequestDto(string id,string description, string user, string roomDest, string roomOrig, string state)
     {
         Id = id;

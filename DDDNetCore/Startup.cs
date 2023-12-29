@@ -1,4 +1,5 @@
 ﻿using DDDNetCore.Domain.TaskRequests.domain;
+using DDDNetCore.Domain.TaskRequests.dto.mappers;
 using DDDNetCore.Domain.TaskRequests.persistence;
 using DDDNetCore.Domain.TaskRequests.service;
 using Microsoft.AspNetCore.Builder;
@@ -67,7 +68,7 @@ namespace DDDSample1
         public void ConfigureMyServices(IServiceCollection services)
         {
             services.AddTransient<IUnitOfWork,UnitOfWork>();
-            
+            services.AddAutoMapper(typeof(MappingProfile));
             // add domain services here
             
             services.AddTransient<IDeliveryTaskRequestRepository, DeliveryTaskRequestRepository>();

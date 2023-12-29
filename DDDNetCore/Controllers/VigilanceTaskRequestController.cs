@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using DDDSample1.Domain.Shared;
 using DDDNetCore.Domain.TaskRequests.domain;
@@ -142,5 +143,24 @@ public class VigilanceTasksRequestController : ControllerBase
             {
                return BadRequest(new {Message = ex.Message});
             }
+        }
+        
+        // GET: api/deliverytasksRequest/filterer
+        [HttpGet("filtered")]
+        public async Task<List<VigilanceTaskRequestDto>> GetAllFiltered()
+        {
+            HttpContext.Request.Query.TryGetValue("state", out var stateValues);
+            if (stateValues.Equals("undefined") || stateValues.Equals("All"))
+            {
+                stateValues = string.Empty;
+            }
+
+            HttpContext.Request.Query.TryGetValue("user", out var userValues);
+            if (userValues.Equals("undefined"))
+            {
+                userValues = string.Empty;
+            }
+
+            return await _service.GetAllFilteredRequestAsync(stateValues, userValues);
         }
 }

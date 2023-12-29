@@ -105,7 +105,7 @@ public class VigilanceTaskRequestService
     {
        
         
-        VigilanceTaskRequest cat = new VigilanceTaskRequest(dto.Description, dto.User, dto.RoomDest, dto.RoomOrig, dto.RequestName, dto.RequestNumber);
+        VigilanceTaskRequest cat = new VigilanceTaskRequest(dto.Description, dto.User, dto.RoomDest, dto.RoomOrig, dto.RequestName, dto.RequestPhoneNumber);
         
         await this._repo.AddAsync(cat);
         await this._unitOfWork.CommitAsync();
@@ -140,6 +140,15 @@ public class VigilanceTaskRequestService
         List<VigilanceTaskRequestDto> listDto = list.ConvertAll<VigilanceTaskRequestDto>(cat => new VigilanceTaskRequestDto( cat.Id.AsGuid().ToString(),  
             cat.Description,  cat.User,  cat.RoomDest,  cat.RoomOrig, cat.RequestName.ToString(),cat.RequestNumber.ToString(), cat.State ));
 
+        return listDto;
+    }
+    public async Task<List<VigilanceTaskRequestDto>> GetAllFilteredRequestAsync(string state, string user)
+    {
+        var list = await this._repo.GetAllFilteredRequestAsync(state, user);
+
+        List<VigilanceTaskRequestDto> listDto = list.ConvertAll<VigilanceTaskRequestDto>(cat => new VigilanceTaskRequestDto( cat.Id.AsGuid().ToString(),  
+            cat.Description,  cat.User,  cat.RoomDest,  cat.RoomOrig, cat.RequestName.ToString(),cat.RequestNumber.ToString(), cat.State ));
+        
         return listDto;
     }
 }

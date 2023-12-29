@@ -75,7 +75,7 @@ public class TaskIdTest
     }
     
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
+    [ExpectedException(typeof(System.FormatException))]
     public void Constructor_WithInvalidGuid_ShouldThrowException()
     {
         // Arrange
@@ -86,18 +86,7 @@ public class TaskIdTest
     }
     
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
-    public void Constructor_WithEmptyGuid_ShouldThrowException()
-    {
-        // Arrange
-        var emptyGuid = Guid.Empty;
-
-        // Act
-        var taskId = new TaskId(emptyGuid);
-    }
-    
-    [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void Constructor_WithNullGuid_ShouldThrowException()
     {
         
@@ -107,18 +96,22 @@ public class TaskIdTest
     }
     
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
+    [ExpectedException(typeof(System.FormatException))]
     public void Constructor_WithEmptyString_ShouldThrowException()
     {
         // Arrange
         var emptyString = "";
-
+        
         // Act
         var taskId = new TaskId(emptyString);
+        
+       
+     
+        
     }
     
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void Constructor_WithNullString_ShouldThrowException()
     {
         

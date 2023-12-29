@@ -182,5 +182,15 @@ public class DeliveryTaskRequestService
             
             return listDto;
     }
+    public async Task<List<DeliveryTaskRequestDto>> GetAllFilteredRequestAsync(string state, string user)
+    {
+        var list = await this._repo.GetAllFilteredRequestAsync(state, user);
+
+        List<DeliveryTaskRequestDto> listDto = list.ConvertAll<DeliveryTaskRequestDto>(cat => new DeliveryTaskRequestDto( cat.Id.AsGuid().ToString(),  
+            cat.Description,  cat.User,  cat.RoomDest,  cat.RoomOrig,  cat.DestName.ToString(),cat.OrigName.ToString(),cat.DestPhoneNumber.ToString(),  cat.OrigPhoneNumber.ToString(), 
+            cat.State,cat.ConfirmationCode.Value));
+        
+        return listDto;
+    }
 }
 }

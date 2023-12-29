@@ -16,7 +16,7 @@ public class VigilanceTaskRequestTest
         private const string ValidRoomDest = "Destination room";
         private const string ValidRoomOrig = "Origin room";
         private const string ValidRequestName = "John Doe";
-        private const string ValidRequestPhoneNumber = "1234567890";
+        private const string ValidRequestPhoneNumber = "123456789";
 
         [TestMethod]
         public void Constructor_WithValidParameters_ShouldCreateInstance()

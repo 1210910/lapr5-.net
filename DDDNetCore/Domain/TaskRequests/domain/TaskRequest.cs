@@ -17,6 +17,8 @@ namespace DDDNetCore.Domain.TaskRequests.domain
         public string RoomOrig { get; private set; }
 
         public string State { get; private set; }
+        
+       // public DateTime date
 
 
         protected TaskRequest() 
@@ -25,10 +27,7 @@ namespace DDDNetCore.Domain.TaskRequests.domain
         }
         protected TaskRequest(string description, string user, string roomDest, string roomOrig)
         {
-            if (string.IsNullOrWhiteSpace(description) || string.IsNullOrWhiteSpace(user) || string.IsNullOrWhiteSpace(roomDest) || string.IsNullOrWhiteSpace(roomOrig))
-            {
-                throw new ArgumentException("The description of the task request cannot be null or empty.");
-            }
+           
             this.Id = new TaskRequestId(Guid.NewGuid());
             this.Description = description;
             this.User = user;
