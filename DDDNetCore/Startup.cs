@@ -1,4 +1,5 @@
-﻿using DDDNetCore.Domain.TaskRequests.domain;
+﻿using System;
+using DDDNetCore.Domain.TaskRequests.domain;
 using DDDNetCore.Domain.TaskRequests.dto.mappers;
 using DDDNetCore.Domain.TaskRequests.persistence;
 using DDDNetCore.Domain.TaskRequests.service;
@@ -15,6 +16,8 @@ using DDDSample1.Domain.Shared;
 using DDDSample1.Domain.Tasks;
 using DDDSample1.Infrastructure.TaskRequests.Repos;
 using DDDSample1.Infrastructure.Tasks.Repos;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 
 namespace DDDSample1
@@ -38,6 +41,15 @@ namespace DDDSample1
             ConfigureMyServices(services);
             
             services.AddControllers().AddNewtonsoftJson();
+            
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("taskPolicy", policy =>
+                {
+                    policy.RequireClaim("role", "Task manager");
+                });
+            });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,13 +75,17 @@ namespace DDDSample1
             {
                 endpoints.MapControllers();
             });
+            app.UseAuthentication();
         }
-
+    
         public void ConfigureMyServices(IServiceCollection services)
         {
             services.AddTransient<IUnitOfWork,UnitOfWork>();
-           
+            
+            services.AddAutoMapper(typeof(MappingProfile));
             // add domain services here
+            services.AddTransient<ITaskRequestRepository, TaskRequestRepository>();
+            services.AddTransient<TaskRequestService>();
             
             services.AddTransient<IDeliveryTaskRequestRepository, DeliveryTaskRequestRepository>();
             services.AddTransient<DeliveryTaskRequestService>();
@@ -86,6 +102,24 @@ namespace DDDSample1
             services.AddTransient<IDeliveryTaskRepository, DeliveryTaskRepository>();
             services.AddTransient<DeliveryTaskService>();
             
+            
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.Authority = "https://dev-3hnosuh6oycbgons.us.auth0.com/";
+                    options.Audience = "Sk0nEcUzFPLnFEdOx9QxkwEMNZ4yZP3N";
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ClockSkew = TimeSpan.Zero,
+                    };
+                });
+            
+            
         }
+        
     }
 }

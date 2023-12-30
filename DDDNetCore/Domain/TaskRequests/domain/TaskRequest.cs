@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using DDDSample1.Domain.Shared;
 
 namespace DDDNetCore.Domain.TaskRequests.domain

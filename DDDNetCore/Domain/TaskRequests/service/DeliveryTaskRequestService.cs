@@ -72,18 +72,22 @@ public class DeliveryTaskRequestService
     public async Task<ActionResult<DeliveryTaskRequestDto>> AddAsync(DeliveryTaskRequestDto dto)
     {
         var cat = new DeliveryTaskRequest(dto.Description, dto.User, dto.RoomDest, dto.RoomOrig, dto.DestName, dto.OrigName, 
-            dto.DestPhoneNumber, dto.OrigPhoneNumber, dto.Code);
-        
+            dto.DestPhoneNumber, dto.OrigPhoneNumber, dto.ConfirmationCode);
         System.Console.WriteLine("DeliveryTaskRequestService");
         System.Console.WriteLine(cat.Id);
-        // write a line to the console
+       
         if (cat.Id == null)
         {
             return null;
         }
         await this._repo.AddAsync(cat);
         await this._unitOfWork.CommitAsync();
-        return dto;
+        
+        var resultDto = new DeliveryTaskRequestDto
+        (cat.Id.Value, cat.Description, cat.User, cat.RoomDest, cat.RoomOrig, cat.DestName.Value, cat.OrigName.Value,
+            cat.DestPhoneNumber.Value, cat.OrigPhoneNumber.Value, cat.State,cat.ConfirmationCode.Value);
+
+        return resultDto;
     }
     
     

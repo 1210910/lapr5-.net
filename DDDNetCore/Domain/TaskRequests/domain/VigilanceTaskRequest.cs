@@ -11,10 +11,10 @@ public class VigilanceTaskRequest: TaskRequest
     public Name RequestName { get; private set; }
     
     public VigilanceTaskRequest(string description, string user, string roomDest, string roomOrig
-        ,string requestName,string requestPhoneNumber) : base(description, user, roomDest, roomOrig)
+        ,string requestName,string requestNumber) : base(description, user, roomDest, roomOrig)
     {
         this.RequestName=new Name(requestName);
-        this.RequestNumber = new PhoneNumber(requestPhoneNumber);
+        this.RequestNumber = new PhoneNumber(requestNumber);
     }
     
     private VigilanceTaskRequest() : base("", "", "", "")

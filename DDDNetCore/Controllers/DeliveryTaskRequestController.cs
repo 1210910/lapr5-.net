@@ -7,6 +7,7 @@ using DDDSample1.Domain.Shared;
 using DDDNetCore.Domain.TaskRequests.domain;
 using DDDNetCore.Domain.TaskRequests.dto;
 using DDDNetCore.Domain.TaskRequests.service;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace DDDNetCore.Controllers;

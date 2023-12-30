@@ -17,14 +17,14 @@ namespace DDDNetCore.Domain.TaskRequests.domain
         public Name DestName { get; private set; }
 
         public DeliveryTaskRequest(string description, string user, string roomDest, string roomOrig,
-            string destName, string origName, string destPhoneNumber, string origPhoneNumber, string code
+            string destName, string origName, string destPhoneNumber, string origPhoneNumber, string confirmationCode
         ) : base(description, user, roomDest, roomOrig)
         {
             this.DestName = new Name(destName);
             this.OrigName = new Name(origName);
             this.DestPhoneNumber = new PhoneNumber(destPhoneNumber);
             this.OrigPhoneNumber = new PhoneNumber(origPhoneNumber);
-            this.ConfirmationCode = Code.Create(code);
+            this.ConfirmationCode = Code.Create(confirmationCode);
         }
         
         private DeliveryTaskRequest() : base()
