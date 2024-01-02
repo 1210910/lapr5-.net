@@ -1,4 +1,7 @@
-﻿namespace DDDNetCore.Domain.TaskRequests.dto{
+﻿using System;
+using DDDSample1.Domain.Shared;
+
+namespace DDDNetCore.Domain.TaskRequests.dto{
 
 public class VigilanceTaskRequestDto: TaskRequestOutputDTO
 {
@@ -9,7 +12,7 @@ public class VigilanceTaskRequestDto: TaskRequestOutputDTO
 
     public VigilanceTaskRequestDto(string id,string description, string user, string roomDest, string roomOrig, 
         string requestName, string requestNumber, string state)
-        : base(id,description, user, roomDest, roomOrig, state)
+        : base(id,description, user, roomDest, roomOrig, state, TaskTypeEnum.Vigilance.ToString())
     {
        
         RequestName = requestName;

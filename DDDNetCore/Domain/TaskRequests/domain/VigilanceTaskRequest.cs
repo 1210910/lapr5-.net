@@ -1,4 +1,5 @@
-﻿using DDDSample1.Domain.Shared.generalValueObjects;
+﻿using DDDSample1.Domain.Shared;
+using DDDSample1.Domain.Shared.generalValueObjects;
 
 namespace DDDNetCore.Domain.TaskRequests.domain
 {
@@ -11,13 +12,13 @@ public class VigilanceTaskRequest: TaskRequest
     public Name RequestName { get; private set; }
     
     public VigilanceTaskRequest(string description, string user, string roomDest, string roomOrig
-        ,string requestName,string requestNumber) : base(description, user, roomDest, roomOrig)
+        ,string requestName,string requestNumber) : base(description, user, roomDest, roomOrig, TaskTypeEnum.Vigilance)
     {
         this.RequestName=new Name(requestName);
         this.RequestNumber = new PhoneNumber(requestNumber);
     }
     
-    private VigilanceTaskRequest() : base("", "", "", "")
+    private VigilanceTaskRequest() : base("", "", "", "",TaskTypeEnum.Delivery)
     {
         // Valores padrão ou nulos podem ser atribuídos aqui
     }

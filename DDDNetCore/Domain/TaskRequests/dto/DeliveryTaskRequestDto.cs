@@ -1,4 +1,5 @@
-﻿using DDDSample1.Domain.Shared.generalValueObjects;
+﻿using DDDSample1.Domain.Shared;
+using DDDSample1.Domain.Shared.generalValueObjects;
 
 namespace DDDNetCore.Domain.TaskRequests.dto{
 
@@ -15,7 +16,7 @@ public class DeliveryTaskRequestDto: TaskRequestOutputDTO
     public DeliveryTaskRequestDto(string id ,string description, string user, string roomDest, string roomOrig, 
         string destName, string origName, string destPhoneNumber, string origPhoneNumber,
         string state, string confirmationCode)
-        : base(id,description, user, roomDest, roomOrig, state)
+        : base(id,description, user, roomDest, roomOrig, state, TaskTypeEnum.Delivery.ToString())
     {
         DestName = destName;
         OrigName = origName;

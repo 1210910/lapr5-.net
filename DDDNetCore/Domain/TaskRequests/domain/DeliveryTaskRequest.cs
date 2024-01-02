@@ -1,4 +1,5 @@
-﻿using DDDSample1.Domain.Shared.generalValueObjects;
+﻿using DDDSample1.Domain.Shared;
+using DDDSample1.Domain.Shared.generalValueObjects;
 
 namespace DDDNetCore.Domain.TaskRequests.domain
 {
@@ -18,7 +19,7 @@ namespace DDDNetCore.Domain.TaskRequests.domain
 
         public DeliveryTaskRequest(string description, string user, string roomDest, string roomOrig,
             string destName, string origName, string destPhoneNumber, string origPhoneNumber, string confirmationCode
-        ) : base(description, user, roomDest, roomOrig)
+        ) : base(description, user, roomDest, roomOrig, TaskTypeEnum.Delivery)
         {
             this.DestName = new Name(destName);
             this.OrigName = new Name(origName);

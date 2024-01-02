@@ -18,7 +18,8 @@ namespace DDDNetCore.Domain.TaskRequests.domain
         public string RoomOrig { get; private set; }
 
         public string State { get; private set; }
-        
+        [NotMapped]
+        public TaskTypeEnum TaskTypeEnum { get; set; }
        // public DateTime date
 
 
@@ -26,7 +27,7 @@ namespace DDDNetCore.Domain.TaskRequests.domain
         {
             // Valores padrão ou nulos podem ser atribuídos aqui
         }
-        protected TaskRequest(string description, string user, string roomDest, string roomOrig)
+        protected TaskRequest(string description, string user, string roomDest, string roomOrig, TaskTypeEnum taskTypeEnum)
         {
            
             this.Id = new TaskRequestId(Guid.NewGuid());
@@ -35,7 +36,7 @@ namespace DDDNetCore.Domain.TaskRequests.domain
             this.RoomOrig = roomOrig;
             this.RoomDest = roomDest;
             this.State = States.Pending.ToString();
-
+            this.TaskTypeEnum = taskTypeEnum;
         }
         
        

@@ -109,11 +109,17 @@ public class VigilanceTaskRequestService
        
         
         VigilanceTaskRequest cat = new VigilanceTaskRequest(dto.Description, dto.User, dto.RoomDest, dto.RoomOrig, dto.RequestName, dto.RequestNumber);
-        
+        if (cat.Id == null)
+        {
+            return null;
+        }
         await this._repo.AddAsync(cat);
         await this._unitOfWork.CommitAsync();
         
-        return dto;
+        var resultDto = new VigilanceTaskRequestDto
+        (cat.Id.Value, cat.Description, cat.User, cat.RoomDest, cat.RoomOrig, cat.RequestName.Value, cat.RequestNumber.Value,cat.State);
+        
+        return resultDto;
         
         
     }
